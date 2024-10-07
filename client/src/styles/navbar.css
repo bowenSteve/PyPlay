@@ -164,3 +164,15 @@ body {
         width: calc(25% - 20px);
     }
 }
+
+.navbar-nav {
+    margin-left: auto;
+}
+
+#user, #logout {
+    margin-left: 10px;
+}
+
+#logout {
+    margin-right: 50px;
+}

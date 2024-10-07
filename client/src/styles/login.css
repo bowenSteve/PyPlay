@@ -1,0 +1,36 @@
+/* login.css */
+
+body {
+    background-color: #1b1b1b;
+    margin: 0;
+}
+
+.full-height {
+    height: 100vh; /* Ensure container takes full viewport height */
+}
+
+.login-container {
+    background-color: #1b1d32;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+    color: white;
+}
+
+.login-container input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+}
+
+.login-container input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.label-color {
+    color: white;
+}
