@@ -9,11 +9,21 @@ class Topic(models.Model):
 
 class DifficultyLevel(models.Model):
     LEVEL_CHOICES = [
-        ('Beginner', 'Beginner'),
-        ('Intermediate', 'Intermediate'),
-        ('Pro', 'Pro'),
+        ('Easy', 'Easy'),
+        ('Medium', 'Medium'),
+        ('Hard', 'Hard'),
     ]
     name = models.CharField(max_length=20, choices=LEVEL_CHOICES, unique=True)
+    question_text = models.CharField(max_length=255)
+    choice_a = models.CharField(max_length=100)
+    choice_b = models.CharField(max_length=100)
+    choice_c = models.CharField(max_length=100)
+    choice_d = models.CharField(max_length=100)
+    correct_answer = models.CharField(max_length=1)  # 'a', 'b', 'c', or 'd'
+    level = models.CharField(max_length=6, choices=LEVEL_CHOICES)
+
+    def __str__(self):
+        return self.question_text
 
 class Question(models.Model):
     text = models.TextField()
