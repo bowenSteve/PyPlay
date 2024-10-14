@@ -7,10 +7,19 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework_simplejwt.tokens import RefreshToken
-from .models import Question
+from .models import Question, Topic
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
+from rest_framework import serializers
+
+
+
+
+class QuestionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Question
+        fields = ['id', 'text', 'difficulty_level', 'timer', 'topics']
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])  # Ensure access token is valid
@@ -54,3 +63,24 @@ def get_user_details(request):
         return Response(user_data, status=status.HTTP_200_OK)
     
     return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_topics(request):
+    topics = Topic.objects.all().values()
+    topic_list = list(topics)
+
+    return Response({"Topics":topic_list}, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_topics_id(request, id):
+    topic = Topic.objects.filter(id=id).first()
+    if not topic:
+        return Response({"error": "Topic not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    questions = Question.objects.filter(topics=topic)
+    question_list = QuestionSerializer(questions, many=True).data
+
+    return Response({"Questions":question_list},status=status.HTTP_200_OK )
