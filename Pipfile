@@ -6,7 +6,7 @@ name = "pypi"
 [packages]
 django = "*"
 django-cors-headers = "*"
-djangorestframework-simplejwt = "*"
+djangorestframework-simplejwt = {extras = ["blacklist"], version = "*"}
 
 [dev-packages]
 
