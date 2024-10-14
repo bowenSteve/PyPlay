@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'quizapp',
     'rest_framework',
     'corsheaders',
+    'rest_framework_simplejwt.token_blacklist',
 ]
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # React app running on port 3000

@@ -27,7 +27,7 @@ class DifficultyLevel(models.Model):
 
 class Question(models.Model):
     text = models.TextField()
-    topics = models.ManyToManyField(Topic)
+    topics = models.ManyToManyField(Topic, related_name='questions')
     difficulty_level = models.ForeignKey(DifficultyLevel, on_delete=models.CASCADE)
     timer = models.IntegerField(help_text='Time allowed in seconds')
 
