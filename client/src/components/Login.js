@@ -37,40 +37,39 @@ function Login() {
             alert('Login failed: Please check your credentials.'); // Inform the user
         });
     }
-    
 
     return (
-        <div className="container d-flex justify-content-center align-items-center full-height">
-            <div className="login-container col-md-4 col-sm-6">
-                <h2 className="text-center">Login</h2>
-                <form id="loginForm" onSubmit={handleLogin}> {/* Use handleLogin on form submission */}
-                    <div className="form-group">
-                        <label className="label-color" htmlFor="username">Username:</label>
-                        <input 
-                            type="text" 
-                            className="form-control" 
-                            id="username" 
-                            name="username" 
+        <div className="auth-wrapper d-flex justify-content-center align-items-center vh-100">
+            <div className="auth-container col-md-4 col-sm-6">
+                <h2 className="auth-title text-center">Login</h2>
+                <form id="authForm" onSubmit={handleLogin}> {/* Use handleLogin on form submission */}
+                    <div className="auth-form-group">
+                        <label className="auth-label" htmlFor="username">Username:</label>
+                        <input
+                            type="text"
+                            className="auth-input"
+                            id="username"
+                            name="username"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)} // Update state on input change
-                            required 
+                            required
                         />
                     </div>
-                    <div className="form-group">
-                        <label className="label-color" htmlFor="password">Password:</label>
-                        <input 
-                            type="password" 
-                            className="form-control" 
-                            id="password" 
-                            name="password" 
+                    <div className="auth-form-group">
+                        <label className="auth-label" htmlFor="password">Password:</label>
+                        <input
+                            type="password"
+                            className="auth-input"
+                            id="password"
+                            name="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)} // Update state on input change
-                            required 
+                            required
                         />
                     </div>
-                    <button type="submit" className="btn btn-primary btn-block">Login</button>
-                    <span className="mt-2 label-color">
-                        Don't have an account? <a href="signup.html">Create Account</a>
+                    <button type="submit" className="auth-btn btn btn-primary btn-block">Login</button>
+                    <span className="auth-footer mt-2">
+                        Don't have an account? <a href="signup.html" className="auth-link">Create Account</a>
                     </span>
                 </form>
             </div>

@@ -1,36 +1,111 @@
-/* login.css */
-
+/* auth.css */
 body {
-    background-color: #1b1b1b;
+    background-color: #1e1e2f; /* Darker background for contrast */
     margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-.full-height {
+.vh-100 {
     height: 100vh; /* Ensure container takes full viewport height */
 }
 
-.login-container {
-    background-color: #1b1d32;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.auth-wrapper {
+    height: 100vh; /* Full viewport height */
 }
 
-.login-container h2 {
-    margin-bottom: 20px;
-    color: white;
+.auth-container {
+    background-color: #282a36; /* Slightly lighter background */
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    width: 350px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
 }
 
-.login-container input[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
+.auth-container:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    transform: translateY(-5px);
+}
+
+.auth-title {
+    margin-bottom: 25px;
+    color: #ffffff;
+    font-size: 28px;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.auth-input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 6px;
+    border: 1px solid #44475a;
+    background-color: #1e1e2f;
+    color: #ffffff;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-input:focus {
+    border-color: #50fa7b; /* Bright green */
+    outline: none;
+    box-shadow: 0 0 5px rgba(80, 250, 123, 0.5);
+}
+
+.auth-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background-color: #50fa7b; /* Bright green */
+    color: #282a36;
     border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.login-container input[type="submit"]:hover {
-    background-color: #45a049;
+.auth-btn:hover {
+    background-color: #45e06f; /* Slightly darker green */
+    transform: translateY(-2px);
 }
 
-.label-color {
-    color: white;
+.auth-btn:active {
+    background-color: #3ac963; /* Even darker green */
+    transform: translateY(1px);
+}
+
+.auth-label {
+    color: #e0e0e0;
+    font-weight: 500;
+}
+
+.auth-link {
+    color: #50fa7b;
+    text-decoration: none;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.auth-link:hover {
+    color: #45e06f;
+    text-decoration: underline;
+}
+
+.auth-footer {
+    color: #e0e0e0;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .auth-container {
+        width: 100%;
+        padding: 20px;
+        border-radius: 8px;
+    }
 }
