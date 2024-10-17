@@ -1,6 +1,7 @@
 import Main from "./components/Main"
 import Login from "./components/Login"
 import QuestionCard from "./components/QuestionCard";
+import Score from "./components/Score";
 
 const routes = [
     {
@@ -14,6 +15,10 @@ const routes = [
     {
         path:"/questioncard/:id",
         element: <QuestionCard />
+    },
+    {
+        path:"/score",
+        element:<Score />
     }
 ]
 

@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
-from quizapp.models import Topic, DifficultyLevel, Question, Option, QuizSession
+from quizapp.models import Topic, DifficultyLevel, Question, Option, QuizSession, QuizSessionQuestion
 from datetime import datetime
 
 class Command(BaseCommand):
@@ -25,7 +25,6 @@ class Command(BaseCommand):
             level, created = DifficultyLevel.objects.get_or_create(name=level_name)
             level_objects.append(level)
         self.stdout.write(self.style.SUCCESS(f'Successfully created {len(levels)} difficulty levels'))
-
         # Create Questions and Options
         questions = [
             {
@@ -345,6 +344,7 @@ class Command(BaseCommand):
                     text=opt['text'],
                     is_correct=opt['is_correct']
                 )
+
         self.stdout.write(self.style.SUCCESS(f'Successfully created {len(questions)} questions'))
 
         # Create a sample user and quiz session
@@ -363,9 +363,12 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS('Successfully created sample quiz session'))
 
     def clear_data(self):
+        # Clear all data in the specified order to maintain referential integrity
+        QuizSessionQuestion.objects.all().delete()
         QuizSession.objects.all().delete()
         Option.objects.all().delete()
         Question.objects.all().delete()
         DifficultyLevel.objects.all().delete()
         Topic.objects.all().delete()
+        User.objects.all().delete()  # Optional: Only if you want to clear users
         self.stdout.write(self.style.WARNING('Cleared existing data'))
