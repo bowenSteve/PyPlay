@@ -1,6 +1,7 @@
 import Navbar from "./Navbar";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../styles/home.css";
 
 function Main() {
     const [topics, setTopics] = useState([]); // Initialize as an empty array
