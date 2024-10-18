@@ -92,65 +92,71 @@ function QuestionCard() {
         <div>
             <Navbar />
             <div className="container">
-                <h3>Select Level:</h3>
-                <div className="form-group">
-                    {/* Radio buttons for selecting level */}
-                    <div className="form-check form-check-inline">
-                        <input 
-                            className="form-check-input" 
-                            type="radio" 
-                            name="levelOptions" 
-                            id="beginner" 
-                            value="Beginner" 
-                            checked={selectedLevel === "Beginner"} 
-                            onChange={handleLevelChange} 
-                        />
-                        <label className="form-check-label" htmlFor="beginner">
-                            Beginner
-                        </label>
-                    </div>
-                    <div className="form-check form-check-inline">
-                        <input 
-                            className="form-check-input" 
-                            type="radio" 
-                            name="levelOptions" 
-                            id="intermediate" 
-                            value="Intermediate" 
-                            checked={selectedLevel === "Intermediate"} 
-                            onChange={handleLevelChange} 
-                        />
-                        <label className="form-check-label" htmlFor="intermediate">
-                            Intermediate
-                        </label>
-                    </div>
-                    <div className="form-check form-check-inline">
-                        <input 
-                            className="form-check-input" 
-                            type="radio" 
-                            name="levelOptions" 
-                            id="pro" 
-                            value="Pro" 
-                            checked={selectedLevel === "Pro"} 
-                            onChange={handleLevelChange} 
-                        />
-                        <label className="form-check-label" htmlFor="pro">
-                            Pro
-                        </label>
-                    </div>
-                </div>
-
-                {/* Start Button */}
-                <div className="text-end">
-                    <button className="btn btn-primary" onClick={handleStart}>
-                        Start
-                    </button>
-                </div>
-
+                {/* Conditionally render Select Level and Start Button */}
+                {!showQuestions && (
+                    <>
+                        <h3>Select Level:</h3>
+                        <div className="form-group">
+                            {/* Radio buttons for selecting level */}
+                            <div className="form-check form-check-inline">
+                                <input 
+                                    className="form-check-input" 
+                                    type="radio" 
+                                    name="levelOptions" 
+                                    id="beginner" 
+                                    value="Beginner" 
+                                    checked={selectedLevel === "Beginner"} 
+                                    onChange={handleLevelChange} 
+                                />
+                                <label className="form-check-label" htmlFor="beginner">
+                                    Beginner
+                                </label>
+                            </div>
+                            <div className="form-check form-check-inline">
+                                <input 
+                                    className="form-check-input" 
+                                    type="radio" 
+                                    name="levelOptions" 
+                                    id="intermediate" 
+                                    value="Intermediate" 
+                                    checked={selectedLevel === "Intermediate"} 
+                                    onChange={handleLevelChange} 
+                                />
+                                <label className="form-check-label" htmlFor="intermediate">
+                                    Intermediate
+                                </label>
+                            </div>
+                            <div className="form-check form-check-inline">
+                                <input 
+                                    className="form-check-input" 
+                                    type="radio" 
+                                    name="levelOptions" 
+                                    id="pro" 
+                                    value="Pro" 
+                                    checked={selectedLevel === "Pro"} 
+                                    onChange={handleLevelChange} 
+                                />
+                                <label className="form-check-label" htmlFor="pro">
+                                    Pro
+                                </label>
+                            </div>
+                        </div>
+    
+                        {/* Start Button */}
+                        <div className="text-end">
+                            <button className="btn btn-primary" onClick={handleStart}>
+                                Start
+                            </button>
+                        </div>
+                    </>
+                )}
+    
                 {/* Render Session component if showQuestions is true */}
-                {showQuestions && <Session questions={questions} sessionId={sessionId}/>}
+                {showQuestions && <Session questions={questions} sessionId={sessionId} />}
             </div>
         </div>
     );
+    
 }
 
 export default QuestionCard;

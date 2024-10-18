@@ -1,13 +1,13 @@
 /* auth.css */
-body {
-    background-color: #1e1e2f; /* Darker background for contrast */
+/* body {
+    background-color: #1e1e2f;
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-}
+} */
 
 .vh-100 {
     height: 100vh; /* Ensure container takes full viewport height */

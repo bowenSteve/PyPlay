@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Navbar from "./Navbar";
 
 function Score(){
 
@@ -22,6 +23,8 @@ function Score(){
         })
     },[])
     return(
+        <div>
+            <Navbar />
         <div className="container">
               <h3>Your Score Sessions</h3>
             {scores.length === 0 ? (
@@ -40,6 +43,7 @@ function Score(){
                 </ul>
             )}
 
+        </div>
         </div>
     )
 }

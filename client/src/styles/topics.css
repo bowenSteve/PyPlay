@@ -1,0 +1,8 @@
+.topic {
+    border: 5px solid rgb(153, 139, 139);
+    width: 130px;
+    padding: 5px;
+}
+.topic:hover {
+    cursor: pointer;
+}
