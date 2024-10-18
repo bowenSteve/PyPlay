@@ -86,7 +86,9 @@ function Navbar() {
             console.error("Error logging out:", error);
         });
     }
-
+     function handleHome(){
+        navigate('/')
+     }
     if (isLoading) {
         return <div>Loading...</div>;  // Render loading message while checking login status
     }
@@ -94,7 +96,7 @@ function Navbar() {
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark back-color">
-                <a className="navbar-brand" href="#">PyGame</a>
+                <a className="navbar-brand" onClick={handleHome}>PyGame</a>
                 <button
                     className="navbar-toggler"
                     type="button"

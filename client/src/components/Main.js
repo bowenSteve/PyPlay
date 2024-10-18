@@ -1,7 +1,8 @@
 import Navbar from "./Navbar";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/home.css";
+import "../styles/topics.css";
+
 
 function Main() {
     const [topics, setTopics] = useState([]); // Initialize as an empty array
@@ -47,7 +48,7 @@ function Main() {
             <div className="container">
                 {topics.length > 0 ? (
                     topics.map(topic => (
-                        <p key={topic.id} onClick={()=>handleTopic(topic.id)} >{topic.name}</p> // Use key prop
+                        <p className="topic" key={topic.id} onClick={()=>handleTopic(topic.id)} >{topic.name}</p> // Use key prop
                     ))
                 ) : (
                     <p>Login to continue</p>
