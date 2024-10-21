@@ -12,16 +12,12 @@ from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .serializers import QuestionSerializer, OptionSerializer  
+from .serializers import QuestionSerializer, OptionSerializer , QuestionSerializer, UserSerializer
 from datetime import timedelta
+from rest_framework.permissions import AllowAny
 
 
 
-
-class QuestionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Question
-        fields = ['id', 'text', 'difficulty_level', 'timer', 'topics']
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])  # Ensure access token is valid
@@ -145,15 +141,13 @@ def create_score(request):
     total_score = data.get('total_score')
     correct_answers_ids = data.get('correct_answers', [])
     wrong_answers_ids = data.get('wrong_answers', [])
-    time_taken_str = data.get('time_taken')  # Time in string format (e.g., "60 seconds")
+    time_taken_seconds = data.get('time_taken')  # Expecting this to be an int
 
-    if quiz_session_id is None or total_score is None:
-        return Response({"error": "Missing required fields: quiz_session_id and total_score"}, status=status.HTTP_400_BAD_REQUEST)
+    if quiz_session_id is None or total_score is None or time_taken_seconds is None:
+        return Response({"error": "Missing required fields: quiz_session_id, total_score, and time_taken"}, status=status.HTTP_400_BAD_REQUEST)
 
     try:
-        # Convert time_taken string to timedelta
-        time_taken_parts = time_taken_str.split()
-        time_taken_seconds = int(time_taken_parts[0])  # Get the number of seconds as an int
+        # Convert time_taken to timedelta directly from seconds
         time_taken = timedelta(seconds=time_taken_seconds)
 
         # Retrieve the QuizSession instance
@@ -184,6 +178,7 @@ def create_score(request):
         return Response({"error": "Quiz session not found"}, status=status.HTTP_404_NOT_FOUND)
     except Exception as e:
         return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
     
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -194,6 +189,8 @@ def get_user_scores(request):
             "id": score.id,
             "quiz_session": {
                 "id": score.quiz_session.id,
+                "topics": [topic.name for topic in score.quiz_session.selected_topics.all()],
+                "difficulty": score.quiz_session.selected_difficulty.name,
             },
             "total_score": score.total_score,
             "time_taken": score.time_taken.total_seconds() if score.time_taken else 0,  # Handle None for time_taken
@@ -204,3 +201,13 @@ def get_user_scores(request):
     ]
 
     return Response({"scores": scores_data}, status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def register(request):
+    serializer = UserSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response({"detail": "User registered successfully."}, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

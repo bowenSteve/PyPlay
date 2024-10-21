@@ -38,6 +38,9 @@ function Login() {
         });
     }
 
+    function handleSignup(){
+        navigate('/register')
+    }
     return (
         <div className="auth-wrapper d-flex justify-content-center align-items-center vh-100">
             <div className="auth-container col-md-4 col-sm-6">
@@ -69,7 +72,7 @@ function Login() {
                     </div>
                     <button type="submit" className="auth-btn btn btn-primary btn-block">Login</button>
                     <span className="auth-footer mt-2">
-                        Don't have an account? <a href="signup.html" className="auth-link">Create Account</a>
+                        Don't have an account? <a className="auth-link" onClick={handleSignup}>Create Account</a>
                     </span>
                 </form>
             </div>
