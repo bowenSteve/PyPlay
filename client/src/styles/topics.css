@@ -2,7 +2,9 @@
     border: 5px solid rgb(153, 139, 139);
     width: 130px;
     padding: 5px;
+    transition: transform 0.3s ease;
 }
 .topic:hover {
     cursor: pointer;
+    transform: translateY(-5px);
 }
